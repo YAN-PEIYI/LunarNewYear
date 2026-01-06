@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lunar New Year Art & Fun</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Yuji+Hentaigana+Akari&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/icon.png" type="image/x-icon"/>
+  
+</head>
+
+
+
+<body>
+<!-- 星空容器 -->
+<div class="star-container"></div>
+<div class="fireworks-container"></div>
+<!-- 原本的內容 -->
+<img src="img/title.png" alt="title" class="responsive-title">
+<div class="logo-container">
+  <img src="img/rabbit.png" alt="動物大冒險地圖" class="map-image jump-logo">
+  <img src="img/logo-bg.png" alt="背景圖" class="logo-bg">
+</div>
+<img src="img/time.png" alt="title" class="responsive-time-image">
+<div class="cloud-container">
+  <div class="cloud-text">
+    <p>福氣滿框盈，笑語溢堂歡<br>
+        Frame full of luck. Home full of joy.  <br><br>
+      一紙紅韻，滿框福氣，最暖心的春節祝福<br>Crimson charm and boundless blessings—the warmest wish for this Lunar New Year.
+    </p>
+  </div>
+</div>
+
+  <div class="section-header">
+    <h1 class="page-title ink-brush">活動說明┃EVENT INFO</h1>
+    <hr class="divider">
+  </div>
+  <div class="info-grid">
+    <div class="info-item">
+      <h3>報名費5元<br><span class="en-title">Only $5!</span></h3>
+      <p>
+        體驗驚喜價，請至下方頁面報名<br>
+        <span class="en-text">Join at our surprise price — sign up now!</span>
+      </p>
+    </div>
+    <div class="info-item">
+      <h3>框住好福氣<br><span class="en-title">Framing Good Luck!</span></h3>
+      <p>
+        手作的溫度最迷人，滿滿福氣裝進框裡<br>
+        <span class="en-text">Handmade with heart, framed with fortune.</span>
+      </p>
+    </div>
+    <div class="info-item">
+      <h3>神秘小禮<br><span class="en-title">Plus a Secret Surprise!</span></h3>
+      <p>
+        活動結束，還有神秘小禮讓你帶回家！<br>
+        <span class="en-text">A little secret gift is waiting for you to bring home!</span>
+      </p>
+    </div>
+  </div>
+
+  <img src="img/food.png" alt="title" class="responsive-image">
+  
+  <div class="section-header">
+    <h1 class="page-title ink-brush">活動流程<br>EVENT SCHEDULE</h1>
+    <hr class="divider">
+  </div>
+  
+  <div class="schedule-cards">
+    <div class="schedule-card">
+      <div class="time">05:00–05:20</div>
+      <div class="activity">📮 活動報到 & 領材料<br><span class="en-text">Check-in & Pick-up</span></div>
+    </div>
+  
+    <div class="schedule-card">
+      <div class="time">05:20–06:00</div>
+      <div class="activity">🖼️ DIY:祈福拓印框畫<br><span class="en-text">DIY:Framed Blessing Rubbing Art</span></div>
+    </div>
+  
+    <div class="schedule-card">
+      <div class="time">06:00–06:30</div>
+      <div class="activity">🧧 新年故事分享<br><span class="en-text">Lunar New Year Story Sharing</span></div>
+    </div>
+    <div class="schedule-card">
+      <div class="time">06:30–08:30</div>
+      <div class="activity">🥗 好菜上桌慶團圓<br><span class="en-text">Great Food. Happy Reunion</span></div>
+    </div>
+
+
+  </div>
+  <!-- 報名表單區塊 -->
+  <div class="section-header">
+    <h1 class="page-title ink-brush">報名表單┃SIGN UP</h1>
+    <hr class="divider">
+  </div>
+  <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdqSG75PAKcAVrVgg8mqJgqRAatIgbDQjkctAjq60HCflNaBg/formResponse" method="POST" target="_blank" class="signup-form">
+    <label for="child-name">小孩姓名 Child's name: </label>
+    <input type="text" id="child-name" name="entry.781115170" required placeholder="請輸入小孩姓名">
+    
+    <label for="email">電子郵件 Email: </label>
+    <input type="email" id="email" name="entry.855090447" required placeholder="請輸入Email">
+    
+    <label for="phone-number">手機號碼 Phone number: </label>
+    <input type="tel" id="phone-number" name="entry.1518588966" required placeholder="請輸入手機號碼">
+    
+    <img src="img/MyQR.jpg" alt="Placeholder" width="120" height="120">
+    
+    <span>Fee: $5 SGD</span>
+    
+    <button type="submit">Submit</button>
+  </form>
+<!-- ...existing code... -->
+  
+<script>
+  
+  /* --- 煙火特效邏輯 --- */
+  const fireworksContainer = document.querySelector('.fireworks-container');
+
+  function createFirework() {
+    // 1. 隨機決定煙火中心點位置 (上方 60% 區域)
+    const startX = Math.random() * window.innerWidth;
+    const startY = Math.random() * (window.innerHeight * 0.6);
+    
+    // 2. 隨機決定這次煙火的顏色 (金、紅、紫、藍、白)
+    const colors = ['#FFD700', '#FF4500', '#DA70D6', '#00BFFF', '#FFFFFF'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    // 3. 產生 20~30 個粒子
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('firework-particle');
+      
+      // 設定中心點
+      particle.style.left = startX + 'px';
+      particle.style.top = startY + 'px';
+      particle.style.backgroundColor = color;
+
+      // 計算爆炸擴散的隨機角度與距離
+      // 角度 (0 ~ 360度)
+      const angle = Math.random() * Math.PI * 2;
+      // 距離 (50px ~ 150px)
+      const velocity = 50 + Math.random() * 100;
+      
+      // 計算最終位移量 (Trigonometry)
+      const tx = Math.cos(angle) * velocity;
+      const ty = Math.sin(angle) * velocity;
+
+      // 將變數傳給 CSS
+      particle.style.setProperty('--tx', `${tx}px`);
+      particle.style.setProperty('--ty', `${ty}px`);
+
+      // 隨機一點點延遲讓爆炸更有層次
+      particle.style.animationDelay = Math.random() * 0.1 + 's';
+
+      fireworksContainer.appendChild(particle);
+
+      // 動畫結束後移除粒子 (1.2秒後)
+      setTimeout(() => {
+        particle.remove();
+      }, 1200);
+    }
+  }
+
+  // 設定定時器：每 2 秒發射一次煙火
+  setInterval(() => {
+    createFirework(); 
+  }, 2000);
+
+  // 為了讓畫面一開始就熱鬧，先發射兩發
+  setTimeout(createFirework, 500);
+  setTimeout(createFirework, 1000);
+</script>
+
+  
+  
+  
+</body>
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>© Lunar New Year Art & Fun 新春福滿框 2026</p>
+    <p>聯絡信箱：peiyidesign@gmail.com</p>
+  </div>
+</footer>
+
+</html>

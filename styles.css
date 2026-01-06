@@ -1,0 +1,647 @@
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  
+  /* --- 背景設定開始 --- */
+  background-color: #d42517;
+  
+  /* 錯位圓點排列 */
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 16%),
+    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 16%);
+  background-position: 0 0, 15px 15px; /* 讓圓點交錯 */
+  background-size: 30px 30px;
+  background-attachment: fixed;
+  /* --- 背景設定結束 --- */
+}
+
+::selection {
+  background: #ffffff;
+  color: #d42517; /* 可選，設定選取文字的顏色 */
+}
+
+.section-header {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.divider {
+  border: none;
+  height: 4px;
+  width: 80px;
+  background: #f7cdbc;
+  margin: 0 auto 30px auto;
+  border-radius: 2px;
+}
+
+
+.page-title {
+  font-family: 'Gen Jyuu Gothic', 'Noto Sans TC', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  color: #f7cdbc;
+  margin: 30px 0;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.subtitle {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 10px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.info-item h3 {
+  font-family: 'Gen Jyuu Gothic', 'Noto Sans TC', sans-serif;
+  font-size: 20px;
+  color: #f7cdbc;
+  margin-bottom: 10px;
+}
+
+.info-item p {
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.en-title {
+  font-family: 'Gen Jyuu Gothic', 'Noto Sans TC', sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: normal;
+}
+
+.en-text {
+  font-size: 0.95em;
+  color: #ffffff;
+  display: block;
+  margin-top: 4px;
+}
+
+
+/* RWD 響應式調整 */
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: repeat(1, 1fr);
+   
+  }
+}
+
+@media (max-width: 480px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.schedule-cards {
+ max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 16px;
+}
+@media (min-width: 900px) {
+  .schedule-cards {
+    padding: 0;
+  }
+}
+
+.schedule-card {
+  background: #f9feff;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 1rem 1.25rem;
+}
+
+.schedule-card .time {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #d42517;
+  margin-bottom: 0.5rem;
+}
+
+.schedule-card .activity {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.schedule-card .details {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.schedule-card .en-text {
+  display: block;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+
+
+/*.logo-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  
+}*/
+
+/* --- 修改：毛筆背景圖樣式 --- */
+.logo-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  /* 確保筆觸不會超出容器太多導致橫向卷軸 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-bg {
+  /* 絕對定位：確保它疊在兔子正後方 */
+  position: absolute;
+  
+  /* 放在容器的正中心 */
+  top: 50%;
+  left: 50%;
+  
+  /* 調整筆觸大小：通常筆觸要比前面的主角(兔子)大一點才好看 */
+  /* 您可以根據找的圖片長寬比例微調這裡的 width */
+  width: 140%;  
+  max-width: 700px; 
+  height: auto;
+  
+  /* 層級：放在兔子(z-index: 1)後面 */
+  z-index: 0;
+  
+  /* 初始狀態：完全透明且縮小（為了動畫） */
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+  
+  /* 套用揮灑動畫 */
+  animation: ink-splash 1.2s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+}
+
+/* 定義潑墨/揮灑動畫 */
+@keyframes ink-splash {
+  0% {
+    opacity: 0;
+    /* 剛開始很小，位置在中心 */
+    transform: translate(-50%, -50%) scale(0.6) rotate(-5deg);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    /* 最後恢復正常大小，位置依然居中 */
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
+
+/* 確保兔子保持在最上層且跳動 */
+.map-image {
+  position: relative;
+  z-index: 2; /* 確保比背景高 */
+  /* 原本的樣式保持不變 */
+  display: block;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* logo 固定寬度，水平置中 */
+.map-image {
+  display: block;
+  max-width: 300px;   /* 固定寬度，可調整 */
+  height: auto;
+  margin: 0 auto; /* 水平置中 */
+  position: relative;
+  z-index: 1;     /* 在背景上方 */
+}
+
+/* 背景圖響應式 */
+.logo-bg {
+  position: absolute;
+  top: 150px;
+  bottom: 0;       /* 放在容器底部 */
+  width: 100%;     /* 寬度隨容器縮放 */
+  height: auto;    /* 高度自動保持比例 */
+  object-fit: cover; /* 裁切多餘部分，保持比例 */
+  z-index: 0;      /* 背景在 logo 下方 */
+}
+
+/* 可選：小螢幕調整 logo */
+@media (max-width: 500px) {
+  .map-image {
+    max-width: 230px; /* 手機縮小 logo */
+  }
+}
+
+/* logo 跳動動畫 */
+.jump-logo {
+  display: block;
+  width: 300px;      /* 固定或 RWD 寬度 */
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: jump 1s ease-in-out infinite; /* 無限跳動 */
+}
+
+/* 定義跳動關鍵幀 */
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); /* 跳起高度，可調整 */
+  }
+}
+
+/* 標題圖片自適應 */
+.responsive-title {
+  display: block;
+  width: 80%;   /* 寬度隨容器縮放 */
+  max-width: 600px; /* 可選：設定最大寬度 */
+  height: auto;  /* 高度自動保持比例 */
+  margin: 20px auto; /* 水平置中，並加垂直間距 */
+}
+
+/* 標題圖片自適應 */
+.responsive-image {
+  display: block;
+  width: 90%;   /* 寬度隨容器縮放 */
+  max-width:  900px; /* 可選：設定最大寬度 */
+  height: auto;  /* 高度自動保持比例 */
+  margin: 20px auto; /* 水平置中，並加垂直間距 */
+
+}
+
+
+
+
+.cloud-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px; /* 可依需求調整 */
+  margin: 0 auto;
+}
+
+
+/* 文字置中並放在背景上方 */
+.cloud-text {
+  font-family: 'Gen Jyuu Gothic', 'Noto Sans TC', sans-serif;
+  text-align: center;
+  color: #fff; /* 文字顏色，可依背景調整 */
+  font-size: 1rem;
+
+}
+
+/* RWD：小螢幕文字縮小 */
+@media (max-width: 600px) {
+  .cloud-text {
+    font-size: 0.8rem;
+    margin: 10px;
+
+  }
+}
+
+
+
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-button {
+  width: 10%; /* 根據圖片大小調整 */
+  height: auto;
+  position: absolute;
+}
+
+.map-point {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #3a86ff;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition: transform 0.2s;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+ 
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+  }
+}
+
+
+
+.site-footer {
+  background-color: #d11a2d;
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #ffffff;
+  border-top: 1px solid #ffffff;
+  margin-top: 60px;
+}
+
+.footer-content p {
+  margin: 5px 0;
+}
+
+/* 可以加一點淡入動畫（可選） */
+.site-footer {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* ...existing code... */
+.signup-form {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 32px 24px;
+  max-width: 320px;
+  margin: 32px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-form label {
+  font-size: 1.1em;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  color: #333;
+  font-weight: 500;
+  align-self: flex-start;
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="tel"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1em;
+  margin-bottom: 12px;
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+
+.signup-form input[type="tel"]:focus {
+  border-color: #7dcfff;
+  outline: none;
+}
+
+.signup-form input:focus {
+  border-color: #7dcfff;
+  outline: none;
+}
+
+.signup-form img {
+  margin: 16px 0 8px 0;
+  border-radius: 8px;
+  background: #f0f0f0;
+  object-fit: cover;
+}
+
+.signup-form span {
+  font-size: 1.1em;
+  color: #d42517;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.signup-form button {
+  background: linear-gradient(90deg, #ff4646 0%, #ffb6b9 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 32px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background 0.2s;
+}
+
+.signup-form button:hover {
+  background: linear-gradient(90deg, #ff8d91 0%, #ff4646 100%);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.checkbox-row input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+@media (max-width: 600px) {
+  .map-point {
+    width: 20px;
+    height: 20px;
+    font-size: 8px;
+  }
+  .popup-content {
+    padding: 15px;
+  }
+  .play-button {
+    font-size: 12px;
+    background-color: #3a86ff; 
+  }
+
+  .map-point[data-point="video"] {
+    width: 30px;
+    height: 30px;
+  
+  }
+
+  .page-title {
+    font-size: 2rem;
+
+}
+.subtitle {
+  font-size: 0.9rem;
+}
+}
+
+.responsive-time-image {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 60px auto; /* 電腦版維持大間距 */
+}
+
+/* 平板尺寸 (768px 以下) */
+@media (max-width: 768px) {
+  .responsive-time-image {
+    max-width: 80%;    /* 稍微縮小一點，保留兩側呼吸空間 */
+    margin: 60px auto; /* 縮小垂直間距 */
+    margin-bottom: 20px;
+  }
+}
+
+/* --- 煙火特效樣式 --- */
+.fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* 讓滑鼠可以穿透，不影響點擊按鈕 */
+  z-index: 4; /* 放在星星(z-index:5)下面，或依需求調整 */
+  overflow: hidden;
+}
+
+.firework-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 0;
+  /* 使用 CSS 變數控制爆炸方向 */
+  transform: translate(0, 0); 
+  animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    /* --tx 和 --ty 由 JS 隨機產生 */
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* --- 毛筆揮灑特效 --- */
+.ink-brush {
+  position: relative;
+  display: inline-block;
+  padding: 5px 30px; /* 留出左右空間給墨跡 */
+  z-index: 1;
+}
+
+/* 這是毛筆的筆觸背景 */
+.ink-brush::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 120%; /* 筆觸比文字高一點 */
+  
+  /* 設定筆觸顏色：這裡用白色，比較像春聯或傳統題字的底色 */
+  background-color: #ffffff; 
+  
+  /* 讓筆觸稍微傾斜，比較自然 */
+  transform: translateY(-50%) skewX(-10deg) rotate(-1deg);
+  transform-origin: left center;
+  z-index: -1;
+
+  /* 核心魔法：用座標畫出鋸齒狀，模擬毛筆的「飛白」與粗糙邊緣 */
+  clip-path: polygon(
+    2% 20%, 15% 10%, 30% 18%, 45% 8%, 60% 15%, 75% 5%, 90% 15%, 100% 10%, /* 上緣 */
+    98% 90%, 85% 80%, 70% 92%, 55% 82%, 40% 90%, 25% 80%, 10% 95%, 0% 85%  /* 下緣 */
+  );
+
+  /* 加入「揮灑」動畫：從左到右刷開 */
+  animation: brush-swish 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* 定義揮灑動畫 */
+@keyframes brush-swish {
+  0% {
+    transform: translateY(-50%) skewX(-10deg) scaleX(0); /* 一開始寬度為 0 */
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-50%) skewX(-10deg) scaleX(1); /* 最後完全展開 */
+    opacity: 1;
+  }
+}
+
+/* 因為背景變成白色，原本淺色的文字要改成深紅色，才看得到 */
+.ink-brush {
+  color: #d42517 !important; /* 強制改成深紅色 */
+  text-shadow: none; /* 移除原本可能的陰影，讓文字更像寫上去的 */
+}
